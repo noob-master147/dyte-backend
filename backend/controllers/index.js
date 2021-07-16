@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 
 const signjwt = async ({ email }) => {
     try {
-        const token = jwt.sign({ email }, secret.token);
+        const token = jwt.sign({ email }, process.env.SECRET_KEY || secret.token);
         return SuccessResponse(200, `Signed a new JWT for ${email}`, { token })
     } catch (error) {
         console.log(chalk.red.bold("Internal Server Error!"))

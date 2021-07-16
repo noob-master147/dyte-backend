@@ -5,11 +5,11 @@
 
  module.exports = {
 
-    // db uri to connect. Name of the database is notifications, please change it to your liking
+    // db uri to connect. 
     mongodb: {
-        uri: `mongodb://${process.env.MONGO_HOST}/hic-backend`
+        uri: `mongodb://${process.env.MONGO_HOST}/dyte-backend`
     },
 
-    backend: "http://localhost:8000",
-    frontend: "http://localhost:3000",
+    backend: "backend",
+    moleculer: `http://${process.env.API_HOST}:3000`,
 };

@@ -16,9 +16,10 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIs
 ##### REGISTER WEBHOOK
 POST http://localhost:8000/register
 Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYyNjQ0NjY4OH0.-Pcjh4Ke4qEsj13oF9GmLiP80J_Y5pezFfTeDtonXks
 
 {
-    "url" : "https://web.whatsapp.com/"
+    "url" : "https://web.whatsappasdf.com/"
 }
 
 ##### UPDATE WEBHOOK
