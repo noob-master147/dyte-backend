@@ -6,13 +6,15 @@ const chalk = require('chalk')
 const { authenticate } = require('../middlewares/authenticate')
 
 
-
-router.get('/', (req, res, next) => {
-	res.json({
-		'status': 'healthy'
-	})
-});
-
+// TEST ROUTE
+router.get('/', (req, res) => {
+    res.send({
+        statusCode: 200,
+        payload: {
+            msg: "The backend is healthy and running"
+        },
+    }).status(200)
+})
 
 router.post('/sign-jwt', async (req, res, next) => {
 	console.log(chalk.yellow.bold('/sign-jwt'))
