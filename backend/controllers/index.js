@@ -5,7 +5,17 @@ const config = require('../config')()
 const secret = require('../config/secret')
 const MOLECULER_ENDPOINT = config.moleculer
 const base64 = require('base-64');
+const jwt = require('jsonwebtoken');
 
+const signjwt = async ({ email }) => {
+    try {
+        const token = jwt.sign({ email }, secret.token);
+        return SuccessResponse(200, `Signed a new JWT for ${email}`, { token })
+    } catch (error) {
+        console.log(chalk.red.bold("Internal Server Error!"))
+        return ErrorResponse(500, 'Internal Server Error! Contact Support: ', err)
+    }
+}
 
 const ip = async (req) => {
     try {
@@ -106,6 +116,7 @@ const del = async ({ id }) => {
 
 
 module.exports = {
+    signjwt,
     register,
     list,
     update,

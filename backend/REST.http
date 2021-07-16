@@ -2,12 +2,14 @@
 ##### IP
 POST http://localhost:8000/ip
 Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYyNjQ0NjY4OH0.-Pcjh4Ke4qEsj13oF9GmLiP80J_Y5pezFfTeDtonXks
 
 {}
 
 ##### LIST
 POST http://localhost:8000/list
 Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYyNjQ0NjY4OH0.-Pcjh4Ke4qEsj13oF9GmLiP80J_Y5pezFfTeDtonXks
 
 {}
 
@@ -34,6 +36,15 @@ Content-Type: application/json
 
 {
     "id" : "mGeThLAcoXLNqTic"
+}
+
+
+##### Sign JWT
+POST http://localhost:8000/sign-jwt
+Content-Type: application/json
+
+{
+    "email" : "admin@admin.com"
 }
 
 #####
