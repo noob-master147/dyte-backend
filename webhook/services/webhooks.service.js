@@ -25,8 +25,8 @@ module.exports = {
                     targetUrl: ctx.params.targetUrl
                 })
                 // Check if the url is already present, then return the existing id
-                // if (checkIfExisting && checkIfExisting._id)
-                //     return { id: checkIfExisting._id, statusCode: 200 }
+                if (checkIfExisting && checkIfExisting._id)
+                    return { id: checkIfExisting._id, statusCode: 200 }
 
                 // const id = v4();
                 const doc = await this.adapter.insert({
@@ -36,7 +36,6 @@ module.exports = {
                 return { id: doc._id, statusCode: 200 };
             }
         },
-
 
         update: {
             rest: "GET /update/:id/:newTargetUrl",
@@ -148,7 +147,6 @@ module.exports = {
         },
 
     },
-
 
     methods: {},
     async afterConnected() { }

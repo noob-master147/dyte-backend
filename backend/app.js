@@ -2,13 +2,9 @@
 	// require('dotenv').config()
 // }
 
-const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongoose = require('mongoose');
-const config = require('./config')()
-const chalk = require('chalk')
 const cors = require('cors')
 const app = express();
 
@@ -28,14 +24,14 @@ app.use(cors({ origin: true }))
 app.use('/', require('./routes/index'))
 
 // Connect to Database
-mongoose.connect(config.mongodb.uri, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useFindAndModify: false
-},
-	() => {
-		console.log(chalk.green.bold('Connected to MongoDB'))
-	})
+// mongoose.connect(config.mongodb.uri, {
+// 	useNewUrlParser: true,
+// 	useUnifiedTopology: true,
+// 	useFindAndModify: false
+// },
+// 	() => {
+// 		console.log(chalk.green.bold('Connected to MongoDB'))
+// 	})
 
 
 module.exports = app;
