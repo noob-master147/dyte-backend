@@ -25,8 +25,8 @@ module.exports = {
                     targetUrl: ctx.params.targetUrl
                 })
                 // Check if the url is already present, then return the existing id
-                if (checkIfExisting && checkIfExisting._id)
-                    return { id: checkIfExisting._id, statusCode: 200 }
+                // if (checkIfExisting && checkIfExisting._id)
+                //     return { id: checkIfExisting._id, statusCode: 200 }
 
                 // const id = v4();
                 const doc = await this.adapter.insert({
@@ -45,21 +45,24 @@ module.exports = {
                 newTargetUrl: 'string',
                 id: 'string'
             },
-            // 462f5b4c-d1c2-4a01-bc4f-7c897268ae49
-
             async handler(ctx) {
-                const id = ctx.params.id
-                const webhookDoc = await this.adapter.findById(id)
+                try {
 
-                if (webhookDoc) {
-                    await this.adapter.updateById(
-                        webhookDoc._id,
-                        { targetUrl: ctx.params.newTargetUrl }
-                    )
-                    return { statusCode: 200 };
+                    const id = ctx.params.id
+                    const webhookDoc = await this.adapter.findById(id)
 
-                } else {
-                    return { statusCode: 404 };
+                    if (webhookDoc) {
+                        await this.adapter.updateById(
+                            webhookDoc._id,
+                            { targetUrl: ctx.params.newTargetUrl }
+                        )
+                        return { statusCode: 200 };
+
+                    } else {
+                        return { statusCode: 404 };
+                    }
+                } catch (error) {
+                    return { statusCode: 500, error: error }
                 }
             }
         },
@@ -71,8 +74,13 @@ module.exports = {
             },
 
             async handler(ctx) {
-                const allDocs = await this.adapter.find({})
-                return { webhooks: allDocs, statusCode: 200 }
+                try {
+                    const allDocs = await this.adapter.find({})
+                    return { webhooks: allDocs, statusCode: 200 }
+
+                } catch (error) {
+                    return { statusCode: 500, error: error }
+                }
             }
         },
 
@@ -87,25 +95,35 @@ module.exports = {
                 try {
                     const allDocs = await this.adapter.find({})
                     let targetList = []
-                    // const decoded = new Buffer(encoded, 'hex').toString();
-                    allDocs.forEach(async (doc, index) => {
+                    // let counter = 0
+                    // let index = 0
+                    console.log(allDocs)
+
+                    // iterate through all the documents
+                    for (let doc of allDocs) {
+                        index = index + 1
                         const payload = {
                             timestamp: Date.now(),
-                            ip: base64.decode(ctx.params.ipAddress)
+                            ip: base64.decode(ctx.params.ipAddress),
+                            counter
                         }
-                        targetList.push(axios.post(doc.targetUrl, payload))
+                        // console.log(`${index}. Sending to ${doc.targetUrl}`)
 
+                        targetList.push(axios.post(doc.targetUrl, payload))
                         // triggr as soon as we hit 20 and then reset the list
                         if (index % 20 === 0) {
+                            // console.log(`\nNOW WE WILL SEND THE BATCH REQUEST\n`)
+                            counter = counter + 1
                             await axios.all(targetList)
                             targetList = []
+                            // console.log(`\nBATCH EXECUTION OVER\n`)
                         }
-                    })
+                    }
                     // fire the remaining requests 
                     await axios.all(targetList)
                     return { statusCode: 200 }
                 } catch (error) {
-                    return { statusCode: 400, error: error }
+                    return { statusCode: 500, error: error }
                 }
 
             }
@@ -119,8 +137,13 @@ module.exports = {
             },
 
             async handler(ctx) {
-                const allDocs = await this.adapter.removeById(ctx.params.id)
-                return { webhooks: allDocs, statusCode: 200 }
+                try {
+                    const allDocs = await this.adapter.removeById(ctx.params.id)
+                    return { webhooks: allDocs, statusCode: 200 }
+
+                } catch (error) {
+                    return { statusCode: 500, error: error }
+                }
             }
         },
 

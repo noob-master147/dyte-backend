@@ -8,13 +8,19 @@ const { authenticate } = require('../middlewares/authenticate')
 
 // TEST ROUTE
 router.get('/', (req, res) => {
-    res.send({
-        statusCode: 200,
-        payload: {
-            msg: "The backend is healthy and running"
-        },
-    }).status(200)
+	res.send({
+		statusCode: 200,
+		payload: {
+			msg: "The backend is healthy and running"
+		},
+	}).status(200)
 })
+
+router.post('/trigger', async (req, res, next) => {
+	console.log(req.body)
+	res.json({ status: true })
+});
+
 
 router.post('/sign-jwt', async (req, res, next) => {
 	console.log(chalk.yellow.bold('/sign-jwt'))
