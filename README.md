@@ -25,16 +25,16 @@ $ npm start
 ```
 
 
-## Sign a JWT token for email ``admin@admin.com``
+### Sign a JWT token for email ``admin@admin.com``
 
-### _(for demonstration only admin@admin.com will be authenticated)_
+ _(for demonstration only admin@admin.com will be authenticated)_
 
-## Use the JWT token in the header as ``token: <JWT Token >``
+### Use the JWT token in the header as ``token: <JWT Token >``
 
-### Refer to the API documentation [here]() or visit http://localhost:8000/apidocs
+Refer to the API documentation [here]() or visit http://localhost:8000/apidocs
 
-<br/>
----
+You can also checkout this [file](./backend/REST.http) for sample requests.
+
 ## Tasks completion 
 - Backend Routes
     - Register  ✅
