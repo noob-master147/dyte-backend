@@ -88,15 +88,19 @@ const update = async ({ id, url }) => {
 
 
 
-const del = async ({ email }) => {
+const del = async ({ id }) => {
     try {
-
-        console.log(chalk.green.bold("user deleted"))
-        // return SuccessResponse(200, 'User Data Deleted', user)
+        const response = await axios({
+            url: `${MOLECULER_ENDPOINT}/api/webhooks/purge/${id}`,
+            method: "GET"
+        })
+        console.log(response.data)
+        console.log(chalk.green.bold("Success in webhook deletion"))
+        return SuccessResponse(200, 'Webhook webhook deletion', null)
     }
     catch (err) {
-        console.log(chalk.red.bold("Error in user/:email!"))
-        return ErrorResponse(500, 'Error in user/:email! Contact Support: ', err)
+        console.log(chalk.red.bold("Error in deleting webhook"))
+        return ErrorResponse(500, 'Error in deleting webhook Contact Support: ', err)
     }
 }
 

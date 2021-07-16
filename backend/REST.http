@@ -28,6 +28,14 @@ Content-Type: application/json
     "url" : "https://web.whatsapp.com/"
 }
 
+##### PURGE WEBHOOK
+POST http://localhost:8000/delete
+Content-Type: application/json
+
+{
+    "id" : "mGeThLAcoXLNqTic"
+}
+
 #####
 POST http://localhost:3000/api/webhooks/trigger
 Content-Type: application/json
