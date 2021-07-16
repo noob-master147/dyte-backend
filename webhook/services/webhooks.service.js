@@ -111,6 +111,19 @@ module.exports = {
             }
         },
 
+        purge: {
+            rest: "GET /purge/:id",
+
+            params: {
+                id: 'string'
+            },
+
+            async handler(ctx) {
+                const allDocs = await this.adapter.removeById(ctx.params.id)
+                return { webhooks: allDocs, statusCode: 200 }
+            }
+        },
+
     },
 
 
