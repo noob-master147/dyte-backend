@@ -3,8 +3,6 @@
 const DbMixin = require("../mixins/db.mixin");
 const axios = require("axios")
 const base64 = require('base-64');
-const rax = require('retry-axios');
-// const { v4 } = require('uuid');
 module.exports = {
     name: "webhooks",
     // version: 1
@@ -46,10 +44,9 @@ module.exports = {
             },
             async handler(ctx) {
                 try {
-
                     const id = ctx.params.id
                     const webhookDoc = await this.adapter.findById(id)
-
+                    console.log("\n\n\n\n\n",webhookDoc)
                     if (webhookDoc) {
                         await this.adapter.updateById(
                             webhookDoc._id,
@@ -58,6 +55,7 @@ module.exports = {
                         return { statusCode: 200 };
 
                     } else {
+                        console.log(`Webhook with id ${id} not found`)
                         return { statusCode: 404 };
                     }
                 } catch (error) {
@@ -153,8 +151,16 @@ module.exports = {
 
             async handler(ctx) {
                 try {
-                    const allDocs = await this.adapter.removeById(ctx.params.id)
-                    return { webhooks: allDocs, statusCode: 200 }
+                    const id = ctx.params.id
+                    const webhookDoc = await this.adapter.findById(id)
+
+                    if (webhookDoc) {
+                        await this.adapter.removeById(id)
+                        return { statusCode: 200 };
+
+                    } else {
+                        return { statusCode: 404 };
+                    }
 
                 } catch (error) {
                     return { statusCode: 500, error: error }

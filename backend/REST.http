@@ -3,50 +3,50 @@ POST http://localhost:8000/sign-jwt
 Content-Type: application/json
 
 {
-    "email" : "divyansh@gmail.com"
+    "email" : "divyanshkhandelwal147@gmail.com"
 }
 
 
 ##### LIST
 POST http://localhost:8000/list
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTk4OX0.fnNbMcQ6a3Qrdn6y10wPM0YYidM97uglRN6rPgOf-Ss
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoa2hhbmRlbHdhbDE0N0BnbWFpbC5jb20iLCJpYXQiOjE2MjY1MjU5NDl9.Mp46Vk4FamBNBBj8aDWKfnDfpkSDtIaz6Jey1bibkAs
 
 {}
 
 ##### IP
 POST http://localhost:8000/ip
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTk4OX0.fnNbMcQ6a3Qrdn6y10wPM0YYidM97uglRN6rPgOf-Ss
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoa2hhbmRlbHdhbDE0N0BnbWFpbC5jb20iLCJpYXQiOjE2MjY1MjU5NDl9.Mp46Vk4FamBNBBj8aDWKfnDfpkSDtIaz6Jey1bibkAs
 
 {}
 
 ##### REGISTER WEBHOOK
 POST http://localhost:8000/register
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTk4OX0.fnNbMcQ6a3Qrdn6y10wPM0YYidM97uglRN6rPgOf-Ss
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoa2hhbmRlbHdhbDE0N0BnbWFpbC5jb20iLCJpYXQiOjE2MjY1MjY4MTJ9.t9qJ7mw946J5v-oA1lZHYUteEc_Min9JAtFMs_s2A0k
 
 {
-    "url" : "http://localhost:8000/fakeee"
+    "url" : "http://tempp.com"
 }
 
 ##### UPDATE WEBHOOK
 POST http://localhost:8000/update
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYyNjQ0NjY4OH0.-Pcjh4Ke4qEsj13oF9GmLiP80J_Y5pezFfTeDtonXks
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoa2hhbmRlbHdhbDE0N0BnbWFpbC5jb20iLCJpYXQiOjE2MjY1MjY4MTJ9.t9qJ7mw946J5v-oA1lZHYUteEc_Min9JAtFMs_s2A0k
 
 {
-    "id" : "lODUaTXJCroPNPPI",
-    "url" : "https://web.whatsapp.com/"
+    "id" : "SqOhCNSyUD62bndv",
+    "url" : "https://web.qwqwqwq.com/"
 }
 
 ##### PURGE WEBHOOK
 POST http://localhost:8000/delete
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYyNjQ0NjY4OH0.-Pcjh4Ke4qEsj13oF9GmLiP80J_Y5pezFfTeDtonXks
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoa2hhbmRlbHdhbDE0N0BnbWFpbC5jb20iLCJpYXQiOjE2MjY1MjY4MTJ9.t9qJ7mw946J5v-oA1lZHYUteEc_Min9JAtFMs_s2A0k
 
 {
-    "id" : "5OS8wTRYdQryGdcp"
+    "id" : "4gSg0iJJQUAuIoX0"
 }
 
 

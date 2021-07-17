@@ -5,17 +5,6 @@ Divyansh Khandelwal
 
 ## Steps to Start
 
-_Using Docker and Docker-Compose_
-``` 
-$ git clone https://github.com/noob-master147/dyte-backend.git
-
-$ cd dyte-backend
-
-$ docker rm -f $(docker ps -a -q)
-
-$ docker-compose up --build
-```
-_Without Docker_
 ``` 
 $ git clone https://github.com/noob-master147/dyte-backend.git
 

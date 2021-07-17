@@ -51,7 +51,7 @@ const register = async (body) => {
         })
         if (response.data.statusCode !== 200) throw new Error('Something went wrong!')
         console.log(chalk.green.bold("Webhook Registered"))
-        return SuccessResponse(200, 'Success in registering webhook', {id: response.data.id})
+        return SuccessResponse(200, 'Success in registering webhook', { id: response.data.id })
     }
     catch (err) {
         console.log(chalk.red.bold("Error in register!"))
@@ -91,7 +91,13 @@ const update = async ({ id, url }) => {
             url: `${MOLECULER_ENDPOINT}/api/webhooks/update/${id}/${url}`,
             method: "GET"
         })
-        if (response.data.statusCode !== 200) throw new Error('Something went wrong!')
+        console.log(response.data)
+        if (response.data.statusCode === 404) {
+            return SuccessResponse(404, `Webhook with ${id} does not exists.`, null)
+        } if (response.data.statusCode !== 200) {
+            throw new Error('Something went wrong!')
+        }
+
         console.log(chalk.green.bold("Webhook Updated"))
         return SuccessResponse(200, 'Webhook Updated', null)
     }
@@ -109,7 +115,11 @@ const del = async ({ id }) => {
             url: `${MOLECULER_ENDPOINT}/api/webhooks/purge/${id}`,
             method: "GET"
         })
-        console.log(response.data)
+        if (response.data.statusCode === 404) {
+            return SuccessResponse(404, `Webhook with ${id} does not exists.`, null)
+        } if (response.data.statusCode !== 200) {
+            throw new Error('Something went wrong!')
+        }
         console.log(chalk.green.bold("Webhook deleted"))
         return SuccessResponse(200, 'Webhook deleted', null)
     }
