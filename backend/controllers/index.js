@@ -49,10 +49,9 @@ const register = async (body) => {
             url: `${MOLECULER_ENDPOINT}/api/webhooks/register/${url}`,
             method: "GET"
         })
-        console.log(response.data)
         if (response.data.statusCode !== 200) throw new Error('Something went wrong!')
         console.log(chalk.green.bold("Webhook Registered"))
-        return SuccessResponse(200, 'Success in registering webhook', null)
+        return SuccessResponse(200, 'Success in registering webhook', {id: response.data.id})
     }
     catch (err) {
         console.log(chalk.red.bold("Error in register!"))

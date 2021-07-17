@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const chalk = require('chalk')
-const secret = require('../config/secret')
 const User = require('../models/userSchema')
 
 const authenticate = (async (req, res, next) => {
@@ -8,9 +7,9 @@ const authenticate = (async (req, res, next) => {
     try {
         let data
         if (req.headers.token) {
-            data = jwt.verify(req.headers.token, secret.token)
+            data = jwt.verify(req.headers.token, process.env.SECRET_KEY)
         } else if (req.body.token) {
-            data = jwt.verify(req.body.token, secret.token)
+            data = jwt.verify(req.body.token, process.env.SECRET_KEY)
         } else {
             throw new Error("JWT Authentication failed")
         }

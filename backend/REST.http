@@ -1,25 +1,33 @@
-
-##### IP
-POST http://localhost:8000/ip
+##### Sign JWT
+POST http://localhost:8000/sign-jwt
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYyNjQ0NjY4OH0.-Pcjh4Ke4qEsj13oF9GmLiP80J_Y5pezFfTeDtonXks
 
-{}
+{
+    "email" : "divyansh@gmail.com"
+}
+
 
 ##### LIST
 POST http://localhost:8000/list
 Content-Type: application/json
-token: eyJhbGdciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxMjQ5NH0.OgJwihAc1iwoZ43namaMPEolWFSQnoCE6ny2UnSUmXg
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTY0NX0.3J1f0Rg9ztcoeEzCHUX-Pd5U1Lr60QEevRQKREKCMxU
+
+{}
+
+##### IP
+POST http://localhost:8000/ip
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoMTQ3QGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTA2NH0.40nDpkW6oXUF07CSUZWU7kcWqhUNSX6rtKIqMOES6RY
 
 {}
 
 ##### REGISTER WEBHOOK
 POST http://localhost:8000/register
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxMjQ5NH0.OgJwihAc1iwoZ43namaMPEolWFSQnoCE6ny2UnSUmXg
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoMTQ3QGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNDg2NH0.Er0CnejR7PAXxUkl0929KoodsjtVwJZkf_Y2RkNAqIQ
 
 {
-    "url" : "http://localhost:8000/trigger"
+    "url" : "http://localhost:8000/fake"
 }
 
 ##### UPDATE WEBHOOK
@@ -41,14 +49,6 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIs
     "id" : "5OS8wTRYdQryGdcp"
 }
 
-
-##### Sign JWT
-POST http://localhost:8000/sign-jwt
-Content-Type: application/json
-
-{
-    "email" : "divyansh@gmail.com"
-}
 
 #####
 GET http://localhost:3000/api/webhooks/trigger/OjpmZmZmOjEyNy4wLjAuMQ==

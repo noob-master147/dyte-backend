@@ -51,6 +51,7 @@ services:
       - internal
 
   mongo:
+    container_name: mongo
     image: mongo:4
     volumes:
       - data:/data/db
