@@ -19,7 +19,6 @@ const authenticate = (async (req, res, next) => {
         if (data.email) {
             const user = await User.findOne({ email: data.email })
             if (user) {
-                console.log(user)
                 req.body.user = user
                 console.log(chalk.bold.green("JWT Authenticated"))
                 next()

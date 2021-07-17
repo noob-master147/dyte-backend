@@ -51,6 +51,7 @@ const register = async (body) => {
         })
         console.log(response.data)
         if (response.data.statusCode !== 200) throw new Error('Something went wrong!')
+        console.log(chalk.green.bold("Webhook Registered"))
         return SuccessResponse(200, 'Success in registering webhook', null)
     }
     catch (err) {
@@ -74,6 +75,7 @@ const list = async () => {
         });
 
         if (response.data.statusCode !== 200) throw new Error('Something went wrong!')
+        console.log(chalk.green.bold("All Webhooks Fetched"))
         return SuccessResponse(200, 'Fetched all webhooks', webhookList)
     }
     catch (err) {
@@ -90,8 +92,8 @@ const update = async ({ id, url }) => {
             url: `${MOLECULER_ENDPOINT}/api/webhooks/update/${id}/${url}`,
             method: "GET"
         })
-        console.log(response.data)
-        console.log(chalk.green.bold("Success in update"))
+        if (response.data.statusCode !== 200) throw new Error('Something went wrong!')
+        console.log(chalk.green.bold("Webhook Updated"))
         return SuccessResponse(200, 'Webhook Updated', null)
     }
     catch (err) {
@@ -109,7 +111,7 @@ const del = async ({ id }) => {
             method: "GET"
         })
         console.log(response.data)
-        console.log(chalk.green.bold("Success in webhook deletion"))
+        console.log(chalk.green.bold("Webhook deleted"))
         return SuccessResponse(200, 'Webhook deleted', null)
     }
     catch (err) {
