@@ -26,7 +26,6 @@ module.exports = {
                 if (checkIfExisting && checkIfExisting._id)
                     return { id: checkIfExisting._id, statusCode: 200 }
 
-                // const id = v4();
                 const doc = await this.adapter.insert({
                     targetUrl: ctx.params.targetUrl
                 });
@@ -45,8 +44,9 @@ module.exports = {
             async handler(ctx) {
                 try {
                     const id = ctx.params.id
+                    // check if the url is present, otherwise return 404
                     const webhookDoc = await this.adapter.findById(id)
-                    console.log("\n\n\n\n\n",webhookDoc)
+
                     if (webhookDoc) {
                         await this.adapter.updateById(
                             webhookDoc._id,
@@ -90,11 +90,14 @@ module.exports = {
 
             async handler(ctx) {
                 try {
+                    // Get the webhooks
                     const allDocs = await this.adapter.find({})
                     let targetList = []
                     let retryList = []
                     let index = 0
                     let retryLimit = 5
+
+                    // decode the ipAddress from base64 to a string
                     const ip = base64.decode(ctx.params.ipAddress)
 
                     // iterate through all the documents
@@ -105,22 +108,23 @@ module.exports = {
                             ip: ip
                         }
 
+                        // if request fails then add the url to the retry list
                         targetList.push(axios.post(doc.targetUrl, payload).catch((err) => {
                             retryList.push(err.config.url)
                             return null
                         }))
 
-                        // triggr as soon as we hit 20 and then reset the list
+                        // triggr as soon as we hit 20 and then reset the targetList
                         if (index % 20 === 0) {
                             await axios.all(targetList)
                             targetList = []
                         }
                     }
-                    // fire the remaining requests
+                    // fire the remaining ( N % 20 ) requests
                     await axios.all(targetList)
 
                     // console.log(retryList)
-                    // Attept to retry 5 times for failed requests
+                    // Attept to retry maximum of 5 times for failed requests
                     if (retryList.length > 0) {
                         for (let url of retryList) {
                             for (let i = 0; i < retryLimit; i++) {
@@ -133,7 +137,7 @@ module.exports = {
                             }
                         }
                     }
-
+                    // return 200 with a list of failed webhooks
                     return { statusCode: 200, failed: retryList }
                 } catch (error) {
                     return { statusCode: 500, error: error }
