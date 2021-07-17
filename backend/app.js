@@ -7,7 +7,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors')
 const app = express();
-
+const mongoose = require('mongoose');
+const config = require('./config')()
+const chalk = require('chalk');
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -25,14 +27,14 @@ app.use('/apidoc', express.static('apidoc'));
 app.use('/', require('./routes/index'))
 
 // Connect to Database
-// mongoose.connect(config.mongodb.uri, {
-// 	useNewUrlParser: true,
-// 	useUnifiedTopology: true,
-// 	useFindAndModify: false
-// },
-// 	() => {
-// 		console.log(chalk.green.bold('Connected to MongoDB'))
-// 	})
+mongoose.connect(config.mongodb.uri, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false
+},
+	() => {
+		console.log(chalk.green.bold('Connected to MongoDB'))
+	})
 
 
 module.exports = app;

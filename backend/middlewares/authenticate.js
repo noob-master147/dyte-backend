@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken')
 const chalk = require('chalk')
 const secret = require('../config/secret')
+const User = require('../models/userSchema')
 
-const authenticate = ((req, res, next) => {
+const authenticate = (async (req, res, next) => {
     console.log(chalk.bold.cyanBright("Authenticating JWT Token..."))
     try {
         let data
@@ -14,17 +15,18 @@ const authenticate = ((req, res, next) => {
             throw new Error("JWT Authentication failed")
         }
 
-        if (data.email === "admin@admin.com")
-            console.log(chalk.bold.green("JWT Authenticated"))
-        next()
-
-        // // check the token
-        // if (data.email == req.body.userID) {
-        //     console.log(chalk.bold.green("JWT Authenticated"))
-        //     next()
-        // } else {
-        //     throw new Error("JWT Authentication failed")
-        // }
+        // check the token
+        if (data.email) {
+            const user = await User.findOne({ email: data.email })
+            if (user) {
+                console.log(user)
+                req.body.user = user
+                console.log(chalk.bold.green("JWT Authenticated"))
+                next()
+            }
+        } else {
+            throw new Error("JWT Authentication failed")
+        }
 
     } catch (error) {
         console.log(chalk.bold.red("JWT Authentication Failed"))

@@ -9,14 +9,14 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIs
 ##### LIST
 POST http://localhost:8000/list
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYyNjQ0NjY4OH0.-Pcjh4Ke4qEsj13oF9GmLiP80J_Y5pezFfTeDtonXks
+token: eyJhbGdciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxMjQ5NH0.OgJwihAc1iwoZ43namaMPEolWFSQnoCE6ny2UnSUmXg
 
 {}
 
 ##### REGISTER WEBHOOK
 POST http://localhost:8000/register
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYyNjQ0NjY4OH0.-Pcjh4Ke4qEsj13oF9GmLiP80J_Y5pezFfTeDtonXks
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxMjQ5NH0.OgJwihAc1iwoZ43namaMPEolWFSQnoCE6ny2UnSUmXg
 
 {
     "url" : "http://localhost:8000/trigger"
@@ -47,7 +47,7 @@ POST http://localhost:8000/sign-jwt
 Content-Type: application/json
 
 {
-    "email" : "admin@admin.com"
+    "email" : "divyansh@gmail.com"
 }
 
 #####

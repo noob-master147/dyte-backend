@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/index')
-const secret = require('../config/secret')
 const chalk = require('chalk')
 const { authenticate } = require('../middlewares/authenticate')
 
 
-// TEST ROUTE
+// BASE ROUTE
 router.get('/', (req, res) => {
 	res.send({
 		statusCode: 200,
