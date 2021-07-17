@@ -47,7 +47,7 @@ const register = async (body) => {
         })
         console.log(response.data)
         if (response.data.statusCode !== 200) throw new Error('Something went wrong!')
-        return SuccessResponse(200, 'Success in trigger', null)
+        return SuccessResponse(200, 'Success in registering webhook', null)
     }
     catch (err) {
         console.log(chalk.red.bold("Error in register!"))
@@ -106,7 +106,7 @@ const del = async ({ id }) => {
         })
         console.log(response.data)
         console.log(chalk.green.bold("Success in webhook deletion"))
-        return SuccessResponse(200, 'Webhook webhook deletion', null)
+        return SuccessResponse(200, 'Webhook deleted', null)
     }
     catch (err) {
         console.log(chalk.red.bold("Error in deleting webhook"))

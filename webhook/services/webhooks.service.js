@@ -3,7 +3,7 @@
 const DbMixin = require("../mixins/db.mixin");
 const axios = require("axios")
 const base64 = require('base-64');
-
+const rax = require('retry-axios');
 // const { v4 } = require('uuid');
 module.exports = {
     name: "webhooks",
@@ -94,32 +94,51 @@ module.exports = {
                 try {
                     const allDocs = await this.adapter.find({})
                     let targetList = []
-                    // let counter = 0
-                    // let index = 0
-                    console.log(allDocs)
+                    let retryList = []
+                    let index = 0
+                    let retryLimit = 5
 
                     // iterate through all the documents
                     for (let doc of allDocs) {
                         index = index + 1
                         const payload = {
                             timestamp: Date.now(),
-                            ip: base64.decode(ctx.params.ipAddress),
-                            counter
+                            ip: base64.decode(ctx.params.ipAddress)
                         }
-                        // console.log(`${index}. Sending to ${doc.targetUrl}`)
 
-                        targetList.push(axios.post(doc.targetUrl, payload))
+                        targetList.push(axios.post(doc.targetUrl, payload).catch((err) => {
+                            retryList.push(err.config.url)
+                            return null
+                        }))
+
                         // triggr as soon as we hit 20 and then reset the list
                         if (index % 20 === 0) {
-                            // console.log(`\nNOW WE WILL SEND THE BATCH REQUEST\n`)
-                            counter = counter + 1
                             await axios.all(targetList)
                             targetList = []
-                            // console.log(`\nBATCH EXECUTION OVER\n`)
                         }
                     }
-                    // fire the remaining requests 
+                    // fire the remaining requests
                     await axios.all(targetList)
+
+
+                    // Attept to retry 5 times for failed requests
+                    // console.log(retryList)
+                    if (retryList.length > 0) {
+                        for (let url of retryList) {
+                            try {
+                                console.log(`\n\nRETRYING FOR ${url}`)
+                                const myAxiosInstance = axios.create();
+                                myAxiosInstance.defaults.raxConfig = {
+                                    instance: myAxiosInstance
+                                };
+                                const interceptorId = rax.attach(myAxiosInstance);
+                                const res = await axios(url);
+                            } catch (error) {
+                                continue
+                            }
+                        }
+                    }
+
                     return { statusCode: 200 }
                 } catch (error) {
                     return { statusCode: 500, error: error }

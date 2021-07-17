@@ -18,19 +18,18 @@ router.get('/', (req, res) => {
 
 
 
-/** Trigger
+/** Trigger TEST ROUTE
  * @apiIgnore
- * @api {post} /register Trigger Webhook
+ * @api {post} /trigger Trigger Webhook
  * @apiName Trigger
  * @apiGroup Webhook
  *
- *  @apiParam {Number} id Users unique ID.
  * 
- */ //Trigger
-// router.post('/trigger', async (req, res, next) => {
-// 	console.log(req.body)
-// 	res.json({ status: true })
-// });
+ */ //Trigger TEST ROUTE
+router.post('/trigger', async (req, res, next) => {
+	console.log(req.body)
+	res.json({ status: true })
+});
 
 /** Sign JWT
  * @api {post} /sign-jwt Sign JWT Token

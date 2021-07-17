@@ -32,6 +32,7 @@
     "moleculer-db-adapter-mongo": "^0.4.7",
     "moleculer-web": "^0.9.1",
     "nats": "^1.4.12",
+    "retry-axios": "^2.4.0",
     "uuid": "^8.3.2"
   },
   "engines": {
