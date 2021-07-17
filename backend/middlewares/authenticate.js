@@ -1,13 +1,14 @@
 const jwt = require('jsonwebtoken')
 const chalk = require('chalk')
 const User = require('../models/userSchema')
+const secret = require('../config/secret')
 
 const authenticate = (async (req, res, next) => {
     console.log(chalk.bold.cyanBright("Authenticating JWT Token..."))
     try {
         let data
         if (req.headers.token) {
-            data = jwt.verify(req.headers.token, process.env.SECRET_KEY)
+            data = jwt.verify(req.headers.token, process.env.SECRET_KEY || process.env.SECRET_KEY || secret.token)
         } else if (req.body.token) {
             data = jwt.verify(req.body.token, process.env.SECRET_KEY)
         } else {
