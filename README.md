@@ -27,11 +27,11 @@ $ npm start
 
 ### Sign a JWT token for email ``admin@admin.com``
 
- _(for demonstration only admin@admin.com will be authenticated)_
+ _(this is for demonstration only, thus only admin@admin.com will be authenticated for now)_
 
 ### Use the JWT token in the header as ``token: <JWT Token >``
 
-Refer to the API documentation [here]() or visit http://localhost:8000/apidocs
+Refer to the API documentation [here](http://localhost:8000/apidoc)
 
 You can also checkout this [file](./backend/REST.http) for sample requests.
 
@@ -49,7 +49,6 @@ You can also checkout this [file](./backend/REST.http) for sample requests.
     - List  ✅
     - Trigger  ✅
     - Update  ✅
-    - Authentication  ✅
     - Delete  ✅
     - Paraller Requests  ✅
 --- 

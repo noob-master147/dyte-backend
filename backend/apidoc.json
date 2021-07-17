@@ -1,0 +1,12 @@
+{
+    "name": "Dyte",
+    "version": "0.1.0",
+    "description": "Dyte API Documentation",
+    "apidoc": {
+        "title": "Dyte",
+        "url": "https://github.com/noob-master147/dyte-backend.git"
+    },
+    "order": [
+        "Webhook"
+    ]
+}

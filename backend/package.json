@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "docs": "apidoc -i routes/ -o ./apidoc",
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
+    "apidoc": "^0.23.0",
     "axios": "^0.21.1",
     "base-64": "^1.0.0",
     "chalk": "^4.1.1",
