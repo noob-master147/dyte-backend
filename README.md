@@ -54,4 +54,4 @@ You can also checkout this [file](./backend/REST.http) for sample requests.
 --- 
 - Bonus
     - docker-compose.yml  ✅
-    - 5 retries ❌
+    - 5 retries ✅

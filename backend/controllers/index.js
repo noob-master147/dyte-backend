@@ -28,7 +28,7 @@ const ip = async (req) => {
         })
 
         if (response.data.statusCode !== 200) throw new Error('Something went wrong!')
-        return SuccessResponse(200, 'Success in trigger', null)
+        return SuccessResponse(200, 'Success in trigger', {failed: response.data.failed})
     }
     catch (err) {
         console.log(chalk.red.bold("Internal Server Error!"))

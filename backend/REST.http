@@ -19,7 +19,7 @@ Content-Type: application/json
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTYyNjQ0NjY4OH0.-Pcjh4Ke4qEsj13oF9GmLiP80J_Y5pezFfTeDtonXks
 
 {
-    "url" : "http://localhost:8000/fake2"
+    "url" : "http://localhost:8000/trigger"
 }
 
 ##### UPDATE WEBHOOK

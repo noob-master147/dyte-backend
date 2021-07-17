@@ -97,13 +97,14 @@ module.exports = {
                     let retryList = []
                     let index = 0
                     let retryLimit = 5
+                    const ip = base64.decode(ctx.params.ipAddress)
 
                     // iterate through all the documents
                     for (let doc of allDocs) {
                         index = index + 1
                         const payload = {
                             timestamp: Date.now(),
-                            ip: base64.decode(ctx.params.ipAddress)
+                            ip: ip
                         }
 
                         targetList.push(axios.post(doc.targetUrl, payload).catch((err) => {
@@ -120,26 +121,22 @@ module.exports = {
                     // fire the remaining requests
                     await axios.all(targetList)
 
-
-                    // Attept to retry 5 times for failed requests
                     // console.log(retryList)
+                    // Attept to retry 5 times for failed requests
                     if (retryList.length > 0) {
                         for (let url of retryList) {
-                            try {
-                                console.log(`\n\nRETRYING FOR ${url}`)
-                                const myAxiosInstance = axios.create();
-                                myAxiosInstance.defaults.raxConfig = {
-                                    instance: myAxiosInstance
-                                };
-                                const interceptorId = rax.attach(myAxiosInstance);
-                                const res = await axios(url);
-                            } catch (error) {
-                                continue
+                            for (let i = 0; i < retryLimit; i++) {
+                                await axios.post(url, { timestamp: Date.now(), ip: ip })
+                                    .then((res) => {
+                                        console.log(`Retry Success: ${res.config.url}`)
+                                        i = retryLimit
+                                    })
+                                    .catch((err) => null)
                             }
                         }
                     }
 
-                    return { statusCode: 200 }
+                    return { statusCode: 200, failed: retryList }
                 } catch (error) {
                     return { statusCode: 500, error: error }
                 }
