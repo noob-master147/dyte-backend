@@ -10,24 +10,24 @@ Content-Type: application/json
 ##### LIST
 POST http://localhost:8000/list
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTY0NX0.3J1f0Rg9ztcoeEzCHUX-Pd5U1Lr60QEevRQKREKCMxU
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTk4OX0.fnNbMcQ6a3Qrdn6y10wPM0YYidM97uglRN6rPgOf-Ss
 
 {}
 
 ##### IP
 POST http://localhost:8000/ip
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoMTQ3QGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTA2NH0.40nDpkW6oXUF07CSUZWU7kcWqhUNSX6rtKIqMOES6RY
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTk4OX0.fnNbMcQ6a3Qrdn6y10wPM0YYidM97uglRN6rPgOf-Ss
 
 {}
 
 ##### REGISTER WEBHOOK
 POST http://localhost:8000/register
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoMTQ3QGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNDg2NH0.Er0CnejR7PAXxUkl0929KoodsjtVwJZkf_Y2RkNAqIQ
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdnlhbnNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNjUxNTk4OX0.fnNbMcQ6a3Qrdn6y10wPM0YYidM97uglRN6rPgOf-Ss
 
 {
-    "url" : "http://localhost:8000/fake"
+    "url" : "http://localhost:8000/fakeee"
 }
 
 ##### UPDATE WEBHOOK

@@ -34,7 +34,7 @@ $ npm start
 
 ### Use the JWT token in the header as ``token: <JWT Token >``
 
-Refer to the API documentation [here](http://localhost:8000/apidoc)
+Refer to the API documentation at ``http://localhost:8000/apidoc`` after starting the servers.
 
 You can also checkout this [file](./backend/REST.http) for sample requests.
 
